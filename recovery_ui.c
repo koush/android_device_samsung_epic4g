@@ -20,7 +20,7 @@
 #include "common.h"
 #include "extendedcommands.h"
 
-char* MENU_HEADERS[] = { "Use vol keys to highlight and home to select.",
+char* MENU_HEADERS[] = { "Use vol keys to highlight and menu to select.",
                          "",
                          NULL };
 
@@ -64,12 +64,13 @@ int device_handle_key(int key_code, int visible) {
             case 49:
                 return HIGHLIGHT_DOWN;
 
-            case 58:
+            case 158:
             case 46:
-            case 139:
+            case 40:
                 return SELECT_ITEM;
             
             case 102:
+            case 58:
             case 30:
                 if (!get_allow_toggle_display())
                     return GO_BACK;
