@@ -39,12 +39,22 @@ int device_recovery_start() {
     return 0;
 }
 
-int device_toggle_display(volatile char* key_pressed, int key_code) { // hold power and press volume-up 
-	return key_pressed[KEY_POWER] && key_code == KEY_VOLUMEUP; 
+int device_toggle_display(volatile char* key_pressed, int key_code) { 
+    // key code for search button 
+    return key_code == 107;
 }
 
 int device_reboot_now(volatile char* key_pressed, int key_code) {
-    return 0;
+    // Reboot if the power key is pressed five times in a row, with
+    // no other keys in between.
+    static int presses = 0;
+    if (key_code == 58) {   // power button
+        ++presses;
+        return presses == 5;
+    } else {
+        presses = 0;
+        return 0;
+    }
 }
 
 int device_handle_key(int key_code, int visible) {
