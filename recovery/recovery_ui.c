@@ -24,15 +24,15 @@ char* MENU_HEADERS[] = { "Use vol keys to highlight and home to select.",
                          "",
                          NULL };
 
-char* MENU_ITEMS[] = { "reboot system now",
-                       "apply sdcard:update.zip",
-                       "wipe data/factory reset",
-                       "wipe cache partition",
-                       "install zip from sdcard",
-                       "backup and restore",
-                       "mounts and storage",
-                       "advanced",
-                       "power off",
+char* MENU_ITEMS[] = { "Reboot system now",
+                       "Apply sdcard:update.zip",
+                       "Wipe data/factory reset",
+                       "Wipe cache partition",
+                       "Install zip from sdcard",
+                       "Backup and Restore",
+                       "Mounts and Storage",
+                       "Advanced",
+                       "Power Off",
 			NULL };
 
 int device_recovery_start() {
