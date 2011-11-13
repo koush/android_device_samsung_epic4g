@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* Edited by DRockstar for the Samsung Epic 4G Gingerbread ClockworkMod */
+
 #include <linux/input.h>
 
 #include "recovery_ui.h"
@@ -40,15 +42,14 @@ int device_recovery_start() {
 }
 
 int device_toggle_display(volatile char* key_pressed, int key_code) { 
-    // key code for search button 
-    return key_code == 107;
+    return key_code == 23; // keypad d key
 }
 
 int device_reboot_now(volatile char* key_pressed, int key_code) {
     // Reboot if the power key is pressed five times in a row, with
     // no other keys in between.
     static int presses = 0;
-    if (key_code == 58) {   // power button
+    if (key_code == 116) { // power button
         ++presses;
         return presses == 5;
     } else {
@@ -60,22 +61,26 @@ int device_reboot_now(volatile char* key_pressed, int key_code) {
 int device_handle_key(int key_code, int visible) {
     if (visible) {
         switch (key_code) {
-            case 51:
-            case 39:
+            case 51:  // side volume up button
+            case 48:  // keypad left key
+            case 39:  // keypad up key
                 return HIGHLIGHT_UP;
 
-            case 52:
-            case 49:
+            case 52:  // side volume down button
+            case 50:  // keypad right key
+            case 49:  // keypad down key
                 return HIGHLIGHT_DOWN;
 
-            case 139:
-            case 46:
-            case 40:
+            case 102: // menu cap key
+            case 53:  // keypad home key 
+            case 46:  // side camera button full press 
+            case 40:  // keypad enter/return key
                 return SELECT_ITEM;
             
-            case 102:
-            case 58:
-            case 30:
+            case 158: // back cap key
+            case 116: // side power button
+            case 57:  // keypad back key 
+            case 30:  // keypad delete key
                 if (!get_allow_toggle_display())
                     return GO_BACK;
         }
